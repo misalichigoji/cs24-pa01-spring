@@ -24,17 +24,20 @@ int main(int argv, char** argc){
   }
 
   //Read each file
+  vector<string> hand1;
+  vector<string> hand2;
   while (getline (cardFile1, line) && (line.length() > 0)){
-
+    hand1.push_back(line);
   }
   cardFile1.close();
 
 
   while (getline (cardFile2, line) && (line.length() > 0)){
-
+    hand2.push_back(line);
   }
   cardFile2.close();
   
   
   return 0;
 }
+
