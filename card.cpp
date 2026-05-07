@@ -8,7 +8,7 @@ class card {
         string get_string();
     private:
         int value; //value between 1-52 ordered ascending, all clubs, then diamonds, then spades, then hearts
-        string cardstring;
+        string cardstring; //string initially put into constructor, syntax program wants to see
 };
 
 card::card(string line) : cardstring(line){
@@ -22,7 +22,7 @@ card::card(string line) : cardstring(line){
         value += 39;
 
 
-    //
+    //processing value
     if(line.length() > 3)
         value += 10;
     else
