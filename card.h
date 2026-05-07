@@ -1,5 +1,5 @@
 // card.h
-// Author: Your name
+// Author: Misali Chigoji, Will Scott
 // All class declarations related to defining a single card go here
 
 #ifndef CARD_H

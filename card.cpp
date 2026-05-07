@@ -1,4 +1,4 @@
 // card.cpp
-// Author: Your name
+// Author: Misali Chigoji, Will Scott
 // Implementation of the classes defined in card.h
 
