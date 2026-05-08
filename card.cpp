@@ -57,12 +57,12 @@ card::card(string line) : cardstring(line){
     }
 }
 
-string card::get_string()
+string card::get_string() const
 {
     return cardstring;
 }
 
-int card::get_value()
+int card::get_value() const
 {
     return value;
 }

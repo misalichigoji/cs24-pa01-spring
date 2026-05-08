@@ -11,8 +11,8 @@
 class card {
     public:
         card(std::string line);
-        std::string get_string();
-        int get_value();
+        std::string get_string() const;
+        int get_value() const;
     private:
         int value; //value between 1-52 ordered ascending, all clubs, then diamonds, then spades, then hearts
         std::string cardstring; //string initially put into constructor, syntax program wants to see
