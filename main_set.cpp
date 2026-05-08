@@ -49,7 +49,7 @@ int main(int argv, char** argc){
       
       if(bob.find(*aliceit) != bob.end())
       {
-        cout << "Alice picked matching card " << *aliceit.get_string() << endl;
+        cout << "Alice picked matching card " << aliceit->get_string() << endl;
          card temp = *aliceit;
          aliceit++;
          alice.erase(temp);  
@@ -66,7 +66,7 @@ int main(int argv, char** argc){
       
       if(alice.find(*bobit) != alice.end())
       {
-        cout << "Bob picked matching card " << *bobit.get_string() << endl;
+        cout << "Bob picked matching card " << bobit->get_string() << endl;
          card temp = *bobit;
          bobit++;
          bob.erase(temp);  
@@ -83,13 +83,13 @@ int main(int argv, char** argc){
   cout << "Alice's cards:" << endl;
   for(auto it = alice.begin(); it != alice.end(); ++it)
   {
-    cout << *it.get_string() << endl;
+    cout << it->get_string() << endl;
   }
 
   cout << "Bob's cards:" << endl;
   for(auto it = bob.begin(); it != bob.end(); ++it)
   {
-    cout << *it.get_string() << endl;
+    cout << it->get_string() << endl;
   }
   
 
