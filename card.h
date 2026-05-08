@@ -20,6 +20,7 @@ class card {
 bool operator>(card c1, card c2);
 bool operator<(card c1, card c2);
 bool operator==(card c1, card c2);
+bool operator!=(card c1, card c2)
 std::ostream& operator<<(std::ostream& file, card c);
 
 #endif

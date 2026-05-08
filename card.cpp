@@ -23,6 +23,12 @@ bool operator==(card c1, card c2)
         return true;
     return false;
 }
+bool operator!=(card c1, card c2)
+{
+    if(c1.get_value() == c2.get_value())
+        return false;
+    return true;
+}
 ostream& operator<<(ostream& file, card c)
 {
     file << c.get_string();
