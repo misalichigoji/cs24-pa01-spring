@@ -7,7 +7,6 @@ class card {
         card(string line);
         string get_string();
         int get_value();
-        
     private:
         int value; //value between 1-52 ordered ascending, all clubs, then diamonds, then spades, then hearts
         string cardstring; //string initially put into constructor, syntax program wants to see
@@ -31,7 +30,10 @@ bool operator==(card c1, card c2)
         return true;
     return false;
 }
-
+ostream& operator<<(ostream& file, card c)
+{
+    file << c.get_string();
+}
 card::card(string line) : cardstring(line){
     //processing suit
     value = 0;
