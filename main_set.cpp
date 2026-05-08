@@ -41,13 +41,19 @@ int main(int argv, char** argc){
 
   while(copy)
   {
-    for(auto it = alice.begin(); it != alice.end(); ++it)
+    auto aliceit = alice.begin();
+    auto bobit = bob.begin();
+
+    while(true)
     {
-      
-    }
-    for(auto it = bob.rbegin(); it != bob.rend(); ++it)
-    {
-      
+      if(*aliceit.get_value() == *bob.get_value)
+      {
+        cout << "Alice picked matching card " << *aliceit.get_string() << endl;
+         card temp = *aliceit;
+         aliceit++;
+         alice.erase(temp);  
+      }
+
     }
   }
   
