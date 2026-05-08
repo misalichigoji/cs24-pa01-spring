@@ -44,7 +44,7 @@ int main(int argv, char** argc){
   {
     copy = false;
 
-    while(aliceit != alice.end())
+    while(*aliceit != *alice.end())
     {
       
       if(bob.find(*aliceit) != bob.end())
@@ -61,7 +61,7 @@ int main(int argv, char** argc){
       }
       aliceit++;
     }
-    while(bobit != bob.end())
+    while(*bobit != *bob.end())
     {
       
       if(alice.find(*bobit) != alice.end())
