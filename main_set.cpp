@@ -24,19 +24,34 @@ int main(int argv, char** argc){
   }
 
   //Read each file
-  set<card> hand1;
-  set<card> hand2;
+  set<card> alice;
+  set<card> bob;
   while (getline (cardFile1, line) && (line.length() > 0)){
-    hand1.insert(card(line));
+    alice.insert(card(line));
   }
   cardFile1.close();
 
 
   while (getline (cardFile2, line) && (line.length() > 0)){
-    hand2.insert(card(line));
+    bob.insert(card(line));
   }
   cardFile2.close();
+
+  bool copy = true;
+
+  while(copy)
+  {
+    for(auto it = alice.begin(); it != alice.end(); ++it)
+    {
+      
+    }
+    for(auto it = bob.rbegin(); it != bob.rend(); ++it)
+    {
+      
+    }
+  }
   
+
   
   return 0;
 }
