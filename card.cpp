@@ -3,6 +3,7 @@
 // Implementation of the classes defined in card.h
 
 #include "card.h"
+using namespace std;
 
 bool operator>(card c1, card c2)
 {

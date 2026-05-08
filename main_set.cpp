@@ -33,7 +33,7 @@ int main(int argv, char** argc){
 
 
   while (getline (cardFile2, line) && (line.length() > 0)){
-    hand1.insert(card(line));
+    hand2.insert(card(line));
   }
   cardFile2.close();
   

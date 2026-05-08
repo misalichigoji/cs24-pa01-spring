@@ -7,12 +7,11 @@
 
 #include <string>
 #include <ostream>
-using namespace std;
 
 class card {
     public:
-        card(string line);
-        string get_string();
+        card(std::string line);
+        std::string get_string();
         int get_value();
     private:
         int value; //value between 1-52 ordered ascending, all clubs, then diamonds, then spades, then hearts
@@ -21,6 +20,6 @@ class card {
 bool operator>(card c1, card c2);
 bool operator<(card c1, card c2);
 bool operator==(card c1, card c2);
-ostream& operator<<(ostream& file, card c);
+std::ostream& operator<<(std::ostream& file, card c);
 
 #endif
