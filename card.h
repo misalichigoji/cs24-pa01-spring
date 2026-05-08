@@ -15,7 +15,7 @@ class card {
         int get_value();
     private:
         int value; //value between 1-52 ordered ascending, all clubs, then diamonds, then spades, then hearts
-        string cardstring; //string initially put into constructor, syntax program wants to see
+        std::string cardstring; //string initially put into constructor, syntax program wants to see
 };
 bool operator>(card c1, card c2);
 bool operator<(card c1, card c2);
