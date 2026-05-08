@@ -53,8 +53,9 @@ int main(int argv, char** argc){
          card temp = *aliceit;
          aliceit++;
          alice.erase(temp);  
-         if(*bobit == temp)
+         if(bobit != bob.rend() && *bobit == temp)
           bobit++;
+          
          bob.erase(temp);
          copy = true;
          break;
@@ -70,7 +71,7 @@ int main(int argv, char** argc){
          card temp = *bobit;
          bobit++;
          bob.erase(temp);  
-         if(*aliceit == temp)
+         if(aliceit != alice.end() && *aliceit == temp)
           aliceit++;
          alice.erase(temp);
          copy = true;
