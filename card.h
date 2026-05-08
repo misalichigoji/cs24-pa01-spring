@@ -5,6 +5,10 @@
 #ifndef CARD_H
 #define CARD_H
 
+#include <string>
+#include <ostream>
+using namespace std;
+
 class card {
     public:
         card(string line);

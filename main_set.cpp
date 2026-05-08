@@ -24,16 +24,16 @@ int main(int argv, char** argc){
   }
 
   //Read each file
-  vector<string> hand1;
-  vector<string> hand2;
+  set<card> hand1;
+  set<card> hand2;
   while (getline (cardFile1, line) && (line.length() > 0)){
-    hand1.push_back(line);
+    hand1.insert(card(line));
   }
   cardFile1.close();
 
 
   while (getline (cardFile2, line) && (line.length() > 0)){
-    hand2.push_back(line);
+    hand1.insert(card(line));
   }
   cardFile2.close();
   

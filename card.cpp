@@ -2,15 +2,7 @@
 // Author: Misali Chigoji, Will Scott
 // Implementation of the classes defined in card.h
 
-class card {
-    public:
-        card(string line);
-        string get_string();
-        int get_value();
-    private:
-        int value; //value between 1-52 ordered ascending, all clubs, then diamonds, then spades, then hearts
-        string cardstring; //string initially put into constructor, syntax program wants to see
-};
+#include "card.h"
 
 bool operator>(card c1, card c2)
 {
@@ -33,6 +25,7 @@ bool operator==(card c1, card c2)
 ostream& operator<<(ostream& file, card c)
 {
     file << c.get_string();
+    return file;
 }
 card::card(string line) : cardstring(line){
     //processing suit
@@ -59,7 +52,7 @@ card::card(string line) : cardstring(line){
         else if(line[2] == 'k')
             value += 13;
         else
-            value += (int)line[2];
+            value += line[2] - '0';
     }
 }
 
