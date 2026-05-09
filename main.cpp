@@ -24,17 +24,17 @@ int main(int argv, char** argc){
   }
 
   //Read each file
+  cardBST alice;
+  cardBST bob;
   while (getline (cardFile1, line) && (line.length() > 0)){
-
+    alice.insert(line);
   }
   cardFile1.close();
 
 
   while (getline (cardFile2, line) && (line.length() > 0)){
-
+    bob.insert(line);
   }
   cardFile2.close();
   
-  
-  return 0;
-}
+

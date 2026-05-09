@@ -26,6 +26,7 @@ void cardBST::clear(Node *n) {
         return;
     clear(n->left);
     clear(n->right);
+    delete n->c;
     delete n;
 }
 
@@ -156,7 +157,7 @@ bool cardBST::remove(int value){
     if (current->left && current->right) 
     {
         Node* pnode = getPredecessorNode(value);
-        current->c = pnode->c;
+        *(current->c) = *(pnode->c);
         current = pnode; 
     }
 
@@ -237,6 +238,8 @@ cardBST::iterator& cardBST::iterator::operator--()
 }
 cardBST::iterator cardBST::begin() const
 {
+    if(!root)
+        return nullptr;
     Node* temp = root;
     while(temp->left)
         temp = temp->left;
@@ -244,13 +247,12 @@ cardBST::iterator cardBST::begin() const
 }
 cardBST::iterator cardBST::end() const
 {
-    Node* temp = root;
-    while(temp->right)
-        temp = temp->right;
-    return temp;
+    return iterator(nullptr);
 }
 cardBST::iterator cardBST::rbegin() const
 {
+    if(!root)
+        return nullptr;
     Node* temp = root;
     while(temp->right)
         temp = temp->right;
@@ -258,8 +260,17 @@ cardBST::iterator cardBST::rbegin() const
 }
 cardBST::iterator cardBST::rend() const
 {
-    Node* temp = root;
-    while(temp->left)
-        temp = temp->left;
-    return temp;
+    return iterator(nullptr);
+}
+bool cardBST::iterator::operator==(iterator i2)
+{
+    if(*this == i2)
+        return true;
+    return false;
+}
+bool cardBST::iterator::operator!=(iterator i2)
+{
+    if(*this != i2)
+        return true;
+    return false;
 }
