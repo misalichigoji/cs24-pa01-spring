@@ -36,5 +36,6 @@ int main(int argv, char** argc){
     bob.insert(line);
   }
   cardFile2.close();
+}
   
 
