@@ -43,6 +43,8 @@ public:
         card* operator*() const;
         iterator& operator++();
         iterator& operator--();
+        bool operator==(iterator i2);
+        bool operator!=(iterator i2);
     };
 
     cardBST();                   // constructor
