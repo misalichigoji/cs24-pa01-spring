@@ -275,3 +275,46 @@ bool cardBST::iterator::operator!=(iterator i2)
         return true;
     return false;
 }
+void playGame(cardBST alice, cardBST bob)
+{
+    bool copy = true;
+  while(copy)
+  {
+    copy = false;
+
+    for(auto aliceit = alice.begin(); aliceit != alice.end(); ++aliceit)
+    {
+      
+      if(bob.contains((**aliceit).get_value()))
+      {
+        cout << "Alice picked matching card " << (*aliceit)->get_string() << endl;
+         card temp = **aliceit;
+         alice.remove(temp.get_value());  
+         bob.remove(temp.get_value());
+         copy = true;
+         break;
+      }
+    }
+    for(auto bobit = bob.rbegin(); bobit != bob.rend(); --bobit)
+    {
+      
+      if(alice.contains((**bobit).get_value()))
+      {
+        cout << "Bob picked matching card " << (*bobit)->get_string() << endl;
+         card temp = **bobit;
+         bob.remove(temp.get_value());  
+         alice.remove(temp.get_value());
+         copy = true;
+         break;
+      }
+    }
+  }
+
+  cout << endl << "Alice's cards:" << endl;
+  for(auto it = alice.begin(); it != alice.end(); ++it)
+    cout << (*it)->get_string() << endl;
+
+  cout << endl << "Bob's cards:" << endl;
+  for(auto it = bob.begin(); it != bob.end(); ++it)
+    cout << (*it)->get_string() << endl;
+}

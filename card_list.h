@@ -62,5 +62,5 @@ public:
     iterator rend() const;
 };
 
-
+void playGame(cardBST alice, cardBST bob);
 #endif
