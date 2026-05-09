@@ -275,7 +275,7 @@ bool cardBST::iterator::operator!=(iterator i2)
         return true;
     return false;
 }
-void playGame(cardBST alice, cardBST bob)
+void playGame(cardBST& alice, cardBST& bob)
 {
     bool copy = true;
   while(copy)

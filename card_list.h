@@ -14,7 +14,7 @@ class cardBST {
 private:
     struct Node {
 	card* c;
-	Node *left, *right, * parent;
+	Node *left, *right, *parent;
 	    Node(string v) : left(0), right(0), parent(0) {
 	        c = new card(v);
 	    }
@@ -22,11 +22,10 @@ private:
 
 	Node *root;
 
-
-    Node* getNodeFor(int value, Node* n) const; 
+    Node* getNodeFor(int value, Node* n) const; // IMPLEMENT THIS FIRST: returns the node for a given value or NULL if none exists
     void clear(Node *n); // for destructor
-    bool insert(string value, int val, Node *n); 
-
+    bool insert(string value, int val, Node *n); // note overloading names for simplicity
+    void printInOrder(Node *n) const;
 
     Node* getSuccessorNode(int value) const;   // returns the Node containing the successor of the given value
     Node* getPredecessorNode(int value) const; // returns the Node containing the predecessor of the given value 
@@ -50,6 +49,7 @@ public:
 
     bool insert(string line);     // insert value; return false if duplicate
 
+    void printInOrder() const;       // print tree data in-order to cout
 
     bool contains(int value) const;  // true if value is in tree
 
@@ -62,5 +62,5 @@ public:
     iterator rend() const;
 };
 
-void playGame(cardBST alice, cardBST bob);
+
 #endif
