@@ -8,17 +8,7 @@
 
 #include <iostream>
 using std::cout;
-template<typename cardBST>
-class CardIterator
-{
-public:
-    CardIterator();
-    CardIterator begin();
-};
-CardIterator begin()
-{
-    return CardIterator();
-}
+
 // constructor sets up empty tree
 cardBST::cardBST() { 
     root = nullptr;

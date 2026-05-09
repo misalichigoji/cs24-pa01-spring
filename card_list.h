@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include "card.h"
-#include "card.cpp"
 using namespace std;
 
 
