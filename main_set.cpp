@@ -70,13 +70,13 @@ int main(int argv, char** argc){
     }
   }
 
-  cout << "Alice's cards:" << endl;
+  cout << endl << "Alice's cards:" << endl;
   for(auto it = alice.begin(); it != alice.end(); ++it)
   {
     cout << it->get_string() << endl;
   }
 
-  cout << "Bob's cards:" << endl;
+  cout << endl << "Bob's cards:" << endl;
   for(auto it = bob.begin(); it != bob.end(); ++it)
   {
     cout << it->get_string() << endl;
