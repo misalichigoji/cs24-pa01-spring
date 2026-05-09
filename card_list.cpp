@@ -8,20 +8,30 @@
 
 #include <iostream>
 using std::cout;
-
+template<typename cardBST>
+class CardIterator
+{
+public:
+    CardIterator();
+    CardIterator begin();
+};
+CardIterator begin()
+{
+    return CardIterator();
+}
 // constructor sets up empty tree
-IntBST::IntBST() { 
+cardBST::cardBST() { 
     root = nullptr;
 }
 
 // destructor deletes all nodes
-IntBST::~IntBST() {
+cardBST::~cardBST() {
     clear(root);
     root = nullptr;
 }
 
 // recursive helper for destructor
-void IntBST::clear(Node *n) {
+void cardBST::clear(Node *n) {
     if(!n)
         return;
     clear(n->left);
@@ -30,20 +40,46 @@ void IntBST::clear(Node *n) {
 }
 
 // insert value in tree; return false if duplicate
-bool IntBST::insert(int value) {
+bool cardBST::insert(string line) {
     if(!root)
     {
-        root = new Node(value);
+        root = new Node(line);
         return true;
     }
-    return insert(value, root);
+    int num(0);
+    int val = 0;
+    if(line[0] == 'd')
+        val += 13;
+    else if(line[0] == 's')
+        val += 26;
+    else if(line[0] == 'h')
+        val += 39;
+
+
+    //processing value
+    if(line.length() > 3)
+        val += 10;
+    else
+    {
+        if(line[2] == 'a')
+            val += 1;
+        else if(line[2] == 'j')
+            val += 11;
+        else if(line[2] == 'q')
+            val += 12;
+        else if(line[2] == 'k')
+            val += 13;
+        else
+            val += line[2] - '0';
+    }
+    return insert(line, val, root);
 }
 
 // recursive helper for insert (assumes n is never 0)
-bool IntBST::insert(int value, Node *n) {
-    if(n->info == value)
+bool cardBST::insert(string value, int val, Node *n) {
+    if(n->c->get_string() == value)
         return false;
-    if(n->info > value)
+    if(n->c->get_value() > val)
     {
         if(!n->left)
         {
@@ -51,7 +87,7 @@ bool IntBST::insert(int value, Node *n) {
             n->left->parent = n;
             return true;
         }
-        return insert(value, n->left);
+        return insert(value, val, n->left);
     }
     else
     {
@@ -61,100 +97,84 @@ bool IntBST::insert(int value, Node *n) {
             n->right->parent = n;
             return true;
         }
-        return insert(value, n->right);
+        return insert(value, val, n->right);
     }
 }
 
 // print tree data pre-order
-void IntBST::printPreOrder() const {
+void cardBST::printPreOrder() const {
     if(!root)
         return;
     printPreOrder(root);
 }
 
 // recursive helper for printPreOrder()
-void IntBST::printPreOrder(Node *n) const {
+void cardBST::printPreOrder(Node *n) const {
     if(!n)
         return;
-    cout << n->info << " ";
+    cout << n->c->get_string() << " ";
     printPreOrder(n->left);
     printPreOrder(n->right);
 }
 
 // print tree data in-order, with helper
-void IntBST::printInOrder() const {
+void cardBST::printInOrder() const {
     printInOrder(root);
 }
-void IntBST::printInOrder(Node *n) const {
+void cardBST::printInOrder(Node *n) const {
     if(!n)
         return;
     printInOrder(n->left);
-    cout << n->info << " ";
+    cout << n->c->get_string() << " ";
     printInOrder(n->right);
 }
 
 // prints tree data post-order, with helper
-void IntBST::printPostOrder() const {
+void cardBST::printPostOrder() const {
     printPostOrder(root);
 }
 
-void IntBST::printPostOrder(Node *n) const {
+void cardBST::printPostOrder(Node *n) const {
     if(!n)
         return;
     printPostOrder(n->left);
     printPostOrder(n->right);
-    cout << n->info << " ";
+    cout << n->c->get_string() << " ";
 }
 
-// return sum of values in tree
-int IntBST::sum() const {
-    return sum(root);
-}
-
-// recursive helper for sum
-int IntBST::sum(Node *n) const {
-    if(!n)
-        return 0;
-    return n->info + sum(n->left) +sum(n->right);
-}
 
 // return count of values
-int IntBST::count() const {
+int cardBST::count() const {
     return count(root);
 }
 
 // recursive helper for count
-int IntBST::count(Node *n) const {
+int cardBST::count(Node *n) const {
     if(!n)
         return 0;
     return 1 + count(n->left) + count(n->right);
 }
 
-// IMPLEMENT THIS FIRST: returns the node for a given value or NULL if none exists
-// Parameters:
-// int value: the value to be found
-// Node* n: the node to start with (for a recursive call)
-// Whenever you call this method from somewhere else, pass it
-// the root node as "n"
-IntBST::Node* IntBST::getNodeFor(int value, Node* n) const{
+
+cardBST::Node* cardBST::getNodeFor(int value, Node* n) const{
     if(!n)
         return NULL;
-    if(n->info == value)
+    if(n->c->get_value() == value)
         return n;
-    if(n->info > value)
+    if(n->c->get_value() > value)
         return getNodeFor(value, n->left);
     return getNodeFor(value, n->right);
 }
 
 // returns true if value is in the tree; false if not
-bool IntBST::contains(int value) const {
+bool cardBST::contains(int value) const {
     if(getNodeFor(value, root))
         return true;
     return false;
 }
 
 // returns the Node containing the predecessor of the given value
-IntBST::Node* IntBST::getPredecessorNode(int value) const{
+cardBST::Node* cardBST::getPredecessorNode(int value) const{
     Node* current = getNodeFor(value, root);
     if(!current)
         return NULL;
@@ -171,15 +191,15 @@ IntBST::Node* IntBST::getPredecessorNode(int value) const{
 }
 
 // returns the predecessor value of the given value or 0 if there is none
-int IntBST::getPredecessor(int value) const{
+int cardBST::getPredecessor(int value) const{
     Node* pnode = getPredecessorNode(value);
     if(!pnode)
         return 0;
-    return pnode->info;
+    return pnode->c->get_value();
 }
 
 // returns the Node containing the successor of the given value
-IntBST::Node* IntBST::getSuccessorNode(int value) const{
+cardBST::Node* cardBST::getSuccessorNode(int value) const{
     Node* current = getNodeFor(value, root);
     if(!current)
         return NULL;
@@ -201,16 +221,16 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const{
 }
 
 // returns the successor value of the given value or 0 if there is none
-int IntBST::getSuccessor(int value) const{
+int cardBST::getSuccessor(int value) const{
     Node* snode = getSuccessorNode(value);
     if(snode)
-        return snode->info;
+        return snode->c->get_value();
     return 0;
 }
 
 // deletes the Node containing the given value from the tree
 // returns true if the node exist and was deleted or false if the node does not exist
-bool IntBST::remove(int value){
+bool cardBST::remove(int value){
     Node* current = getNodeFor(value, root);
     if (!current) 
         return false;
@@ -218,7 +238,7 @@ bool IntBST::remove(int value){
     if (current->left && current->right) 
     {
         Node* pnode = getPredecessorNode(value);
-        current->info = pnode->info;
+        current->c = pnode->c;
         current = pnode; 
     }
 
@@ -238,4 +258,66 @@ bool IntBST::remove(int value){
 
     delete current;
     return true;
+}
+
+card* cardBST::iterator::operator*() const 
+    {
+        return current->c;
+    }
+cardBST::iterator& cardBST::iterator::operator++()
+{
+    if (current == nullptr)
+        return *this;
+        
+    if (current->right)
+    {
+        current = current->right;
+
+        while (current->left)
+            current = current->left;
+    }
+    else
+    {
+        Node* parent = current->parent;
+
+        while (parent && current == parent->right)
+        {
+            current = parent;
+            parent = parent->parent;
+        }
+
+        current = parent;
+    }
+
+    return *this;
+}
+cardBST::iterator& cardBST::iterator::operator--()
+{
+    if(current == nullptr)
+        return *this;
+    
+    if(current->left)
+    {
+        current = current->left;
+        while(current->right)
+            current = current-> right;
+    }
+    else
+    {
+        Node* parent = current->parent;
+
+        while (parent && current == parent->left)
+        {
+            current = parent;
+            parent = parent->parent;
+        }
+
+        current = parent;
+    }
+
+    return *this;
+}
+cardBST::iterator cardBST::begin() const
+{
+
 }
