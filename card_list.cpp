@@ -175,6 +175,7 @@ bool cardBST::remove(int value){
     else 
         current->parent->right = temp;
 
+    delete current->c;
     delete current;
     return true;
 }
@@ -239,7 +240,7 @@ cardBST::iterator& cardBST::iterator::operator--()
 cardBST::iterator cardBST::begin() const
 {
     if(!root)
-        return nullptr;
+        return iterator(nullptr);
     Node* temp = root;
     while(temp->left)
         temp = temp->left;
@@ -252,7 +253,7 @@ cardBST::iterator cardBST::end() const
 cardBST::iterator cardBST::rbegin() const
 {
     if(!root)
-        return nullptr;
+        return iterator(nullptr);
     Node* temp = root;
     while(temp->right)
         temp = temp->right;
@@ -264,13 +265,13 @@ cardBST::iterator cardBST::rend() const
 }
 bool cardBST::iterator::operator==(iterator i2)
 {
-    if(*this == i2)
+    if(current == i2.current)
         return true;
     return false;
 }
 bool cardBST::iterator::operator!=(iterator i2)
 {
-    if(*this != i2)
+    if(current != i2.current)
         return true;
     return false;
 }
