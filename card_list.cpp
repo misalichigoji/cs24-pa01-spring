@@ -29,7 +29,6 @@ void cardBST::clear(Node *n) {
     delete n;
 }
 
-// TODO: Eventually insert should build a card once and compare using card operators.
 bool cardBST::insert(string line) {
     if(!root)
     {
@@ -65,7 +64,7 @@ bool cardBST::insert(string line) {
     return insert(line, val, root);
 }
 
-// TODO: Eventually pass a card through insertion instead of a separate string and int.
+
 bool cardBST::insert(string value, int val, Node *n) {
     if(n->c->get_string() == value)
         return false;
@@ -91,20 +90,9 @@ bool cardBST::insert(string value, int val, Node *n) {
     }
 }
 
-// TODO: Print each card on its own line for the final hand output.
-void cardBST::printInOrder() const {
-    printInOrder(root);
-}
-void cardBST::printInOrder(Node *n) const {
-    if(!n)
-        return;
-    printInOrder(n->left);
-    cout << n->c->get_string() << " ";
-    printInOrder(n->right);
-}
 
 // TODO: Change this to search by card instead of an int value.
-cardBST::Node* cardBST::getNodeFor(int value, Node* n) const{
+cardBST::Node* cardBST::getNodeFor(int value , Node* n) const{
     if(!n)
         return NULL;
     if(n->c->get_value() == value)
@@ -250,5 +238,29 @@ cardBST::iterator& cardBST::iterator::operator--()
 }
 cardBST::iterator cardBST::begin() const
 {
-
+    Node* temp = root;
+    while(temp->left)
+        temp = temp->left;
+    return temp;
+}
+cardBST::iterator cardBST::end() const
+{
+    Node* temp = root;
+    while(temp->right)
+        temp = temp->right;
+    return temp;
+}
+cardBST::iterator cardBST::rbegin() const
+{
+    Node* temp = root;
+    while(temp->right)
+        temp = temp->right;
+    return temp;
+}
+cardBST::iterator cardBST::rend() const
+{
+    Node* temp = root;
+    while(temp->left)
+        temp = temp->left;
+    return temp;
 }
