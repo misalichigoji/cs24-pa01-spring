@@ -38,46 +38,35 @@ int main(int argv, char** argc){
   cardFile2.close();
 
   bool copy = true;
-  auto aliceit = alice.begin();
-  auto bobit = bob.rbegin();
   while(copy)
   {
     copy = false;
 
-    while(aliceit != alice.end())
+    for(auto aliceit = alice.begin(); aliceit != alice.end(); ++aliceit)
     {
       
       if(bob.find(*aliceit) != bob.end())
       {
         cout << "Alice picked matching card " << aliceit->get_string() << endl;
          card temp = *aliceit;
-         aliceit++;
          alice.erase(temp);  
-         if(bobit != bob.rend() && *bobit == temp)
-          bobit++;
-          
          bob.erase(temp);
          copy = true;
          break;
       }
-      aliceit++;
     }
-    while(bobit != bob.rend())
+    for(auto bobit = bob.rbegin(); bobit != bob.rend(); ++bobit)
     {
       
       if(alice.find(*bobit) != alice.end())
       {
         cout << "Bob picked matching card " << bobit->get_string() << endl;
          card temp = *bobit;
-         bobit++;
          bob.erase(temp);  
-         if(aliceit != alice.end() && *aliceit == temp)
-          aliceit++;
          alice.erase(temp);
          copy = true;
          break;
       }
-      bobit++;
     }
   }
 
