@@ -1,7 +1,7 @@
 CXX=g++ 
 CXXFLAGS = -g --std=c++20 -Wall
 
-all: game game_set
+all: game game_set tests
 
 .PHONY: all clean tests
 
