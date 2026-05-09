@@ -29,7 +29,7 @@ void cardBST::clear(Node *n) {
     delete n;
 }
 
-// insert value in tree; return false if duplicate
+// TODO: Eventually insert should build a card once and compare using card operators.
 bool cardBST::insert(string line) {
     if(!root)
     {
@@ -65,7 +65,7 @@ bool cardBST::insert(string line) {
     return insert(line, val, root);
 }
 
-// recursive helper for insert (assumes n is never 0)
+// TODO: Eventually pass a card through insertion instead of a separate string and int.
 bool cardBST::insert(string value, int val, Node *n) {
     if(n->c->get_string() == value)
         return false;
@@ -91,23 +91,7 @@ bool cardBST::insert(string value, int val, Node *n) {
     }
 }
 
-// print tree data pre-order
-void cardBST::printPreOrder() const {
-    if(!root)
-        return;
-    printPreOrder(root);
-}
-
-// recursive helper for printPreOrder()
-void cardBST::printPreOrder(Node *n) const {
-    if(!n)
-        return;
-    cout << n->c->get_string() << " ";
-    printPreOrder(n->left);
-    printPreOrder(n->right);
-}
-
-// print tree data in-order, with helper
+// TODO: Print each card on its own line for the final hand output.
 void cardBST::printInOrder() const {
     printInOrder(root);
 }
@@ -119,33 +103,7 @@ void cardBST::printInOrder(Node *n) const {
     printInOrder(n->right);
 }
 
-// prints tree data post-order, with helper
-void cardBST::printPostOrder() const {
-    printPostOrder(root);
-}
-
-void cardBST::printPostOrder(Node *n) const {
-    if(!n)
-        return;
-    printPostOrder(n->left);
-    printPostOrder(n->right);
-    cout << n->c->get_string() << " ";
-}
-
-
-// return count of values
-int cardBST::count() const {
-    return count(root);
-}
-
-// recursive helper for count
-int cardBST::count(Node *n) const {
-    if(!n)
-        return 0;
-    return 1 + count(n->left) + count(n->right);
-}
-
-
+// TODO: Change this to search by card instead of an int value.
 cardBST::Node* cardBST::getNodeFor(int value, Node* n) const{
     if(!n)
         return NULL;
@@ -156,14 +114,14 @@ cardBST::Node* cardBST::getNodeFor(int value, Node* n) const{
     return getNodeFor(value, n->right);
 }
 
-// returns true if value is in the tree; false if not
+// TODO: Change this to take a card instead of an int value.
 bool cardBST::contains(int value) const {
     if(getNodeFor(value, root))
         return true;
     return false;
 }
 
-// returns the Node containing the predecessor of the given value
+// TODO: This can be changed to work from a Node* or card instead of an int value.
 cardBST::Node* cardBST::getPredecessorNode(int value) const{
     Node* current = getNodeFor(value, root);
     if(!current)
@@ -180,15 +138,7 @@ cardBST::Node* cardBST::getPredecessorNode(int value) const{
     return current->parent;
 }
 
-// returns the predecessor value of the given value or 0 if there is none
-int cardBST::getPredecessor(int value) const{
-    Node* pnode = getPredecessorNode(value);
-    if(!pnode)
-        return 0;
-    return pnode->c->get_value();
-}
-
-// returns the Node containing the successor of the given value
+// TODO: This can be changed to work from a Node* or card instead of an int value.
 cardBST::Node* cardBST::getSuccessorNode(int value) const{
     Node* current = getNodeFor(value, root);
     if(!current)
@@ -210,16 +160,7 @@ cardBST::Node* cardBST::getSuccessorNode(int value) const{
     return current;
 }
 
-// returns the successor value of the given value or 0 if there is none
-int cardBST::getSuccessor(int value) const{
-    Node* snode = getSuccessorNode(value);
-    if(snode)
-        return snode->c->get_value();
-    return 0;
-}
-
-// deletes the Node containing the given value from the tree
-// returns true if the node exist and was deleted or false if the node does not exist
+// TODO: Change this to take a card, and fix the two-child case so card ownership stays safe.
 bool cardBST::remove(int value){
     Node* current = getNodeFor(value, root);
     if (!current) 
