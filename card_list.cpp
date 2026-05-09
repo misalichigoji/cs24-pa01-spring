@@ -35,7 +35,6 @@ bool cardBST::insert(string line) {
         root = new Node(line);
         return true;
     }
-    int num(0);
     int val = 0;
     if(line[0] == 'd')
         val += 13;
